@@ -23,9 +23,9 @@ from wikipedia import exceptions
 web.register('chrome', None, web.BackgroundBrowser("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"))
 
 engine = pyttsx3.init()
-wolframalpha_app_id = 'VKQ4LW-Q6VTLUWKA2'
+wolframalpha_app_id = 'write your wolframalpha_app_id '
 
-    
+
 def speak(audio):
     engine.say(audio)
     engine.runAndWait()
@@ -43,7 +43,7 @@ def date_():
     speak(date)
     speak(month)
     speak(year)
-    
+
 def wishme():
     speak('Welcome back Aadi!')
     time_()
@@ -100,7 +100,7 @@ def sendEmail(to,content):
 
 def screenshot():
     img = pyautogui.screenshot()
-    img.save('E:\Aadi\MAK Academy\Full JARVIS\Screenshots JARVIS/screenshot.png')
+    img.save('E:\user\MAK Academy\Full JARVIS\Screenshots JARVIS/screenshot.png')
 
 def cpu():
     usage = str(psutil.cpu_percent())
@@ -121,13 +121,13 @@ if __name__ == "__main__":
         query = takeCommand().lower()
 
         # All commands will be stored in lower case in query
-        
+
         if 'time' in query: # tell us time when asked
             time_()
-        
+
         elif 'date' in query: # tell us date when asked
             date_()
-        
+
         elif 'wikipedia' in query:
             speak('Searching......')
             query=query.replace('wikipedia', '')
@@ -135,11 +135,11 @@ if __name__ == "__main__":
             speak('According to wikipedia')
             print(result)
             speak(result)
-        
+
         elif 'send email' in query:
             try:
                 speak('What should i say?')
-                
+
                 content=takeCommand()
                 # provide receiver email address
 
@@ -158,13 +158,13 @@ if __name__ == "__main__":
             speak('What would you like to search?')
             search = takeCommand().lower()
             web.get('chrome').open_new_tab(search + '.com')
-            
+
         elif 'search youtube' in query:
             speak('What should I search?')
             search_Term = takeCommand().lower()
             speak('Here we go to YouTube!')
             web.open('https://www.youtube.com/results?search_query='+search_Term)
-            
+
         elif 'search google' in query:
             speak('What should i search')
             search_Term = takeCommand().lower()
@@ -248,19 +248,19 @@ if __name__ == "__main__":
                 jsonObj = urlopen("Your API Key")
                 data = json.load(jsonObj)
                 i = 1
-                
+
                 speak('here are some top news from the times of india')
                 print('''========================= TOP HEADLINES====================='''+ '\n')
-                
+
                 for item in data['articles']:
-                    
+
                     print(str(i) + '. ' + item['title'] + '\n')
                     print(item['description'] + '\n')
                     speak(str(i) + '. ' + item['title'] + '\n')
                     i += 1
-                    
+
             except Exception as e:
-                print(str(e)) 
+                print(str(e))
 
         elif 'calculate' in query:
             Client = wolframalpha.Client(wolframalpha_app_id)
@@ -297,4 +297,3 @@ if __name__ == "__main__":
             os.system("shutdown /r /t 1")
         elif 'shutdown' in query:
             os.system("shutdown /s /t 1")
-        
